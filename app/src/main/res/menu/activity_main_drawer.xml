@@ -6,22 +6,17 @@
         <item
             android:id="@+id/nav_asignatura"
             android:icon="@drawable/ic_asignatura_paste_black_24dp"
-            android:title="Asignaturas"/>
-
+            android:title="@string/nav_asignaturas"/>
 
 
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_ecuenta"
+            android:icon="@drawable/ic_estadocuenta_money_black_24dp"
+            android:title="@string/nav_ecuenta" />
         <item
             android:id="@+id/nav_config"
             android:icon="@drawable/ic_action_config_24dp"
-            android:title="@string/drawer_config" />
+            android:title="@string/nav_config" />
 
     </group>
 

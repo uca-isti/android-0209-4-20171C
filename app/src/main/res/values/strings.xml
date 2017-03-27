@@ -8,11 +8,12 @@
 
 
     <!-- drawer main-->
-    <string name="action_settings_Asignaturas">Asignaturas</string>
+    <string name="nav_asignaturas">Asignaturas</string>
 
     <!--drawer main-->
 
-    <string name="drawer_config">Configuraciones</string>
+    <string name="nav_ecuenta">Estado de Cuenta</string>
+    <string name="nav_config">Configuraciones</string>
 
 
 
