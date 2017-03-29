@@ -97,10 +97,6 @@ public class MainActivity extends AppCompatActivity
             fragmentClass= AsignaturaFragment.class;
         } else if (id == R.id.nav_ecuenta) {
             fragmentClass= CuentaFragment.class;
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         } else if (id == R.id.nav_home) {
             fragmentClass= HomeFragment.class;
         }
