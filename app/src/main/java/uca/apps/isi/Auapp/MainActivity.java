@@ -3,6 +3,8 @@ package uca.apps.isi.Auapp;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import uca.apps.isi.Auapp.Fragments.AsignaturaFragment;
+import uca.apps.isi.Auapp.Fragments.ConfigFragment;
+import uca.apps.isi.Auapp.Fragments.CuentaFragment;
+import uca.apps.isi.Auapp.Fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,24 +84,36 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        Fragment fragment = null;
+        Class fragmentClass=null;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
 
-        if (id == R.id.nav_asignatura) {
+        if (id == R.id.nav_config) {
+            fragmentClass= ConfigFragment.class;
 
-            if (id == R.id.nav_config) {
+        } else if (id == R.id.nav_asignatura) {
+            fragmentClass= AsignaturaFragment.class;
+        } else if (id == R.id.nav_ecuenta) {
+            fragmentClass= CuentaFragment.class;
+        } else if (id == R.id.nav_share) {
 
-                // Handle the camera action
-            } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_send) {
 
-            } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_home) {
+            fragmentClass= HomeFragment.class;
+        }
 
-            } else if (id == R.id.nav_share) {
 
-            } else if (id == R.id.nav_send) {
 
-            }
+
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
