@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import uca.apps.isi.Auapp.Fragments.AdministrarCuentaFragment;
 import uca.apps.isi.Auapp.Fragments.AsignaturaFragment;
 import uca.apps.isi.Auapp.Fragments.ConfigFragment;
 import uca.apps.isi.Auapp.Fragments.CuentaFragment;
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity
             fragmentClass= CuentaFragment.class;
         } else if (id == R.id.nav_home) {
             fragmentClass= HomeFragment.class;
+        }else if (id == R.id.nav_administrarCuenta) {
+          fragmentClass= AdministrarCuentaFragment.class;
         }
 
 

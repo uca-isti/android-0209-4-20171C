@@ -22,6 +22,11 @@
             android:icon="@drawable/ic_action_config_24dp"
             android:title="@string/nav_config" />
 
+      <item
+        android:id="@+id/nav_administrarCuenta"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/nav_adminCuenta" />
+
     </group>
 
     <item android:title="Communicate">

@@ -5,9 +5,44 @@
     tools:context="uca.apps.isi.Auapp.Fragments.AsignaturaFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="soy el fragment asignatura" />
+  <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="29dp"
+    android:text="                                 Listado de Asignaturas"
+    android:id="@+id/textView2"
+    android:layout_weight="1"
+    android:layout_gravity="center_horizontal|top"
+    android:paddingTop="1dp"
+    android:paddingBottom="4dp" />
+  </LinearLayout>
+
+  <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+
+
+    <ListView
+      android:id="@+id/android:list"
+      android:layout_width="4dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:drawSelectorOnTop="true"
+      android:paddingTop="14dp" />
+
+
+
+
+  </LinearLayout>
+
+
+
 
 </FrameLayout>

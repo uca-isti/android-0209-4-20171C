@@ -1,23 +1,23 @@
 <resources>
-    <string name="app_name">Aucapp</string>
+  <string name="app_name">Aucapp</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+  <string name="action_settings">Settings</string>
 
 
-    <!-- drawer main-->
-    <string name="nav_asignaturas">Asignaturas</string>
+  <!-- drawer main-->
+  <string name="nav_asignaturas">Asignaturas</string>
 
-    <!--drawer main-->
+  <!--drawer main-->
 
-    <string name="nav_ecuenta">Estado de Cuenta</string>
-    <string name="nav_config">Configuraciones</string>
-    <string name="nav_home">Home</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="nav_ecuenta">Estado de Cuenta</string>
+  <string name="nav_config">Configuraciones</string>
+  <string name="nav_home">Home</string>
+  <string name="nav_adminCuenta">Administrar cuenta</string>
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
