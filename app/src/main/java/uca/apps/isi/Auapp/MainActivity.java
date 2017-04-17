@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,15 +16,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uca.apps.isi.Auapp.Fragments.AdministrarCuentaFragment;
 import uca.apps.isi.Auapp.Fragments.AsignaturaFragment;
 import uca.apps.isi.Auapp.Fragments.ConfigFragment;
 import uca.apps.isi.Auapp.Fragments.CuentaFragment;
 import uca.apps.isi.Auapp.Fragments.HomeFragment;
+import uca.apps.isi.Auapp.api.Api;
+import uca.apps.isi.Auapp.api.ApiInterface;
+import uca.apps.isi.Auapp.models.Asignatura;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private final static String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +57,30 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Call<List<Asignatura>> call = Api.instance().getAsignaturas();
+        call.enqueue(new Callback<List<Asignatura>>() {
+            @Override
+            public void onResponse(Call<List<Asignatura>> call, Response<List<Asignatura>> response) {
+
+
+                if(response != null) {
+
+                    for(Asignatura asignatura : response.body()) {
+
+                        Log.i(TAG, asignatura.getAsignatura());
+                    }
+                } else {
+                    Log.i(TAG, "Response es nulo");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Asignatura>> call, Throwable t) {
+                Log.i(TAG, t.getMessage());
+            }
+        });
     }
 
     @Override
