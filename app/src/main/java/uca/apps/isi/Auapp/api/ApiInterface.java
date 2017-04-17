@@ -19,4 +19,7 @@ public interface ApiInterface {
     @GET("carreras")
     Call<List<Carrera>> getCarreras();
 
+    @GET("deudas")
+    Call<List<Carrera>> getDeudas();
+
 }
