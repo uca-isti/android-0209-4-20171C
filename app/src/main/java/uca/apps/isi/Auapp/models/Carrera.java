@@ -1,10 +1,12 @@
 package uca.apps.isi.Auapp.models;
 
+import io.realm.RealmObject;
+
 /**
  * Created by isi3 on 17/4/2017.
  */
 
-public class Carrera {
+public class Carrera  extends RealmObject {
 
     private int id_carrera;
     private String nombre;

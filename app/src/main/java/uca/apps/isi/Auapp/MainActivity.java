@@ -16,8 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,6 +35,7 @@ import uca.apps.isi.Auapp.models.Asignatura;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private final static String TAG = "MainActivity";
+    ArrayList<Asignatura> asignaturas=new ArrayList<Asignatura>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +72,8 @@ public class MainActivity extends AppCompatActivity
                     for(Asignatura asignatura : response.body()) {
 
                         Log.i(TAG, asignatura.getAsignatura());
+                        asignaturas.add(asignatura);
+
                     }
                 } else {
                     Log.i(TAG, "Response es nulo");
@@ -151,4 +156,30 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void guardar(Asignatura asig){
+        Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+        //
+        Asignatura asignatura = new Asignatura();
+        asignatura.setAsignatura(asig.getAsignatura());
+        asignatura.setId_asignatura(asig.getId_asignatura());
+        asignatura.setPrecio(asig.getPrecio());
+        //
+        realm.commitTransaction();
+    }
+
+    private void sincronizar(){
+        //limpiar primero
+
+        for(Asignatura a:this.asignaturas){
+
+            this.guardar(a);
+
+        }
+
+    }
+
+
 }

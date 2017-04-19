@@ -1,10 +1,12 @@
 package uca.apps.isi.Auapp.models;
 
+import io.realm.RealmObject;
+
 /**
  * Created by isi3 on 17/4/2017.
  */
 
-public class Asignatura {
+public class Asignatura extends RealmObject {
 
     private int id_asignatura;
     private String asignatura;

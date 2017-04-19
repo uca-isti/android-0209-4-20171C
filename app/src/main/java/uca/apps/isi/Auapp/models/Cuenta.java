@@ -1,10 +1,12 @@
 package uca.apps.isi.Auapp.models;
 
+import io.realm.RealmObject;
+
 /**
  * Created by isi3 on 17/4/2017.
  */
 
-public class Cuenta {
+public class Cuenta  extends RealmObject {
 
     private int deuda;
     private int cuatrimestre;
@@ -12,7 +14,7 @@ public class Cuenta {
     private String fecha;
     private int iduser;
 
-    public int getDeuda() {
+    public int getDeuda()  {
         return deuda;
     }
 
