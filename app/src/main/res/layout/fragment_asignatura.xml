@@ -5,44 +5,59 @@
     tools:context="uca.apps.isi.Auapp.Fragments.AsignaturaFragment">
 
     <!-- TODO: Update blank fragment layout -->
-  <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
-  <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="29dp"
-    android:text="                                 Listado de Asignaturas"
-    android:id="@+id/textView2"
-    android:layout_weight="1"
-    android:layout_gravity="center_horizontal|top"
-    android:paddingTop="1dp"
-    android:paddingBottom="4dp" />
-  </LinearLayout>
 
   <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
 
+      <TextView
+          android:text="Asignatura"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/textView2"
+          android:layout_weight="1" />
 
-    <ListView
-      android:id="@+id/android:list"
-      android:layout_width="4dp"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
-      android:drawSelectorOnTop="true"
-      android:paddingTop="14dp" />
+      <EditText
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:inputType="textPersonName"
+          android:text="Name"
+          android:ems="10"
+          android:id="@+id/editText5"
+          android:layout_weight="1" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="80dp"
+        android:layout_height="100dp"
+        android:layout_weight="6">
 
+      <Button
+          android:text="Guardar"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/button"
+          android:layout_weight="3" />
+
+      <Button
+          android:text="Ver lista"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/button2"
+          android:layout_weight="3" />
+
+    </LinearLayout>
 
 
   </LinearLayout>
-
-
 
 
 </FrameLayout>
