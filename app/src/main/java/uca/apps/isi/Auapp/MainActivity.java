@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,19 +16,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import uca.apps.isi.Auapp.Adapters.AsignaturaAdapter;
 import uca.apps.isi.Auapp.Fragments.AdministrarCuentaFragment;
 import uca.apps.isi.Auapp.Fragments.AsignaturaFragment;
 import uca.apps.isi.Auapp.Fragments.ConfigFragment;
 import uca.apps.isi.Auapp.Fragments.CuentaFragment;
 import uca.apps.isi.Auapp.Fragments.HomeFragment;
+import uca.apps.isi.Auapp.UI.Asignaturas;
 import uca.apps.isi.Auapp.api.Api;
 import uca.apps.isi.Auapp.api.ApiInterface;
 import uca.apps.isi.Auapp.models.Asignatura;
@@ -36,6 +41,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private final static String TAG = "MainActivity";
     ArrayList<Asignatura> asignaturas=new ArrayList<Asignatura>();
+    private static RecyclerView mRecyclerView;
+    private static RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private static MainActivity mainActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,10 +80,14 @@ public class MainActivity extends AppCompatActivity
 
                     for(Asignatura asignatura : response.body()) {
 
-                        Log.i(TAG, asignatura.getAsignatura());
+                        Log.i(TAG, "Asignatura "+ asignatura.getAsignatura());
                         asignaturas.add(asignatura);
 
+
                     }
+                    mostrarDatosArreglo();
+                    sincronizar();
+
                 } else {
                     Log.i(TAG, "Response es nulo");
                 }
@@ -86,6 +99,8 @@ public class MainActivity extends AppCompatActivity
                 Log.i(TAG, t.getMessage());
             }
         });
+
+
     }
 
     @Override
@@ -156,8 +171,23 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+private void eliminarTodo(){
+    Realm.init(getApplicationContext());
+    Realm realm = Realm.getDefaultInstance();
+    RealmResults<Asignatura> results = realm.where(Asignatura.class).findAll();
+
+// All changes to data must happen in a transaction
+    realm.beginTransaction();
+
+// Delete all matches
+    results.deleteAllFromRealm();
+
+    realm.commitTransaction();
+    Log.i(TAG,"Se supone que elimino todo");
+}
 
     private void guardar(Asignatura asig){
+        Realm.init(getApplicationContext());
         Realm realm = Realm.getDefaultInstance();
 
         realm.beginTransaction();
@@ -168,18 +198,73 @@ public class MainActivity extends AppCompatActivity
         asignatura.setPrecio(asig.getPrecio());
         //
         realm.commitTransaction();
+        Log.i(TAG,"se supone que guardo");
     }
 
     private void sincronizar(){
         //limpiar primero
-
+        this.eliminarTodo();
         for(Asignatura a:this.asignaturas){
-
+            Log.i(TAG,"entra al for del sincronizar");
             this.guardar(a);
 
         }
+        mostrarDatosDB();
 
     }
 
+    private void mostrarDatosDB(){
+        Realm.init(getApplicationContext());
+        Realm realm = Realm.getDefaultInstance();
 
+       // realm.beginTransaction();
+        final RealmResults<Asignatura> asignaturass = realm
+                .where(Asignatura.class).findAll();
+
+        for(Asignatura a:asignaturass){
+
+                Log.i(TAG, "registro de la bd "+a.getAsignatura());
+
+
+
+
+        }
+      //  realm.commitTransaction();
+       // mAdapter = new TweetsAdapter(tweetModels, mainActivity);
+      //  mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void mostrarDatosArreglo(){
+
+        for(Asignatura as:asignaturas){
+            Log.i(TAG, "RECORRIO AQUI");
+            Log.i(TAG,"asignatura "+as.getAsignatura());
+            notificar("ASIGNATURA"+ as.getAsignatura());
+        }
+
+
+    }
+
+    private void notificar(String mensaje)
+    {
+        Toast toast1 =
+                Toast.makeText(this,
+                        mensaje, Toast.LENGTH_SHORT);
+
+        toast1.show();
+    }
+
+    public static void loadData() {
+        // Get a Realm instance for this thread
+        Realm realm = Realm.getDefaultInstance();
+        final RealmResults<Asignatura> asignaturasss = realm
+                .where(Asignatura.class)
+                .findAll();
+
+       // Log.i("TAG", "" + Asignaturas.size());
+
+        // specify an adapter (see also next example)
+        mAdapter = new AsignaturaAdapter(asignaturasss, mainActivity);
+        mRecyclerView.setAdapter(mAdapter);
+    }
 }
