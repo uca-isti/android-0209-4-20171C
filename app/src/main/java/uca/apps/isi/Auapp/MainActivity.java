@@ -192,7 +192,7 @@ private void eliminarTodo(){
 
         realm.beginTransaction();
         //
-        Asignatura asignatura = new Asignatura();
+        Asignatura asignatura =realm.createObject(Asignatura.class);
         asignatura.setAsignatura(asig.getAsignatura());
         asignatura.setId_asignatura(asig.getId_asignatura());
         asignatura.setPrecio(asig.getPrecio());
