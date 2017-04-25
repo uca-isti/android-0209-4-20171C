@@ -1,5 +1,8 @@
 package uca.apps.isi.Auapp;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -51,40 +54,65 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-
-        //Peticion al api
-        Call<List<Asignatura>> call = Api.instance().getAsignaturas();
-        call.enqueue(new Callback<List<Asignatura>>() {
-            @Override
-            public void onResponse(Call<List<Asignatura>> call, Response<List<Asignatura>> response) {
-
-
-                if(response != null) {
-
-                    for(Asignatura asignatura : response.body()) {
-
-                        Log.i(TAG, "Asignatura "+ asignatura.getAsignatura());
-                        asignaturas.add(asignatura);
+if(isConnectingToInternet(getApplicationContext())){
+    //Peticion al api
+    Call<List<Asignatura>> call = Api.instance().getAsignaturas();
+    call.enqueue(new Callback<List<Asignatura>>() {
+        @Override
+        public void onResponse(Call<List<Asignatura>> call, Response<List<Asignatura>> response) {
 
 
-                    }
-                    mostrarDatosArreglo();
-                    sincronizar();
+            if(response != null) {
 
-                } else {
-                    Log.i(TAG, "Response es nulo");
+                for(Asignatura asignatura : response.body()) {
+
+                    Log.i(TAG, "Asignatura "+ asignatura.getAsignatura());
+                    asignaturas.add(asignatura);
+
+
                 }
+                mostrarDatosArreglo();
+                sincronizar();
+
+            } else {
+
+                Log.i(TAG, "Response es nulo");
 
             }
 
-            @Override
-            public void onFailure(Call<List<Asignatura>> call, Throwable t) {
-                Log.i(TAG, t.getMessage());
-            }
-        });
+        }
+
+        @Override
+        public void onFailure(Call<List<Asignatura>> call, Throwable t) {
+            Log.i(TAG, t.getMessage());
+        }
+    });
+
+}
+
+else
+{
+    Toast toast =
+            Toast.makeText(getApplicationContext(),"Sin conexion, cargados localmente", Toast.LENGTH_SHORT);
+
+    toast.show();
+    mostrarDatosDB();
+}
+
         //****
 
 
+    }
+
+    public static boolean isConnectingToInternet(Context context) {
+
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        return activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
     }
 
 
