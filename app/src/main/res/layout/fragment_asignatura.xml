@@ -24,13 +24,12 @@
           android:layout_weight="1" />
 
       <EditText
+          android:id="@+id/editTextAsignatura"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:inputType="textPersonName"
-          android:text="Name"
+          android:layout_weight="1"
           android:ems="10"
-          android:id="@+id/editText5"
-          android:layout_weight="1" />
+          android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,14 +43,15 @@
           android:text="Guardar"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/button"
-          android:layout_weight="3" />
+          android:id="@+id/buttonGuardar"
+          android:layout_weight="3"
+          />
 
       <Button
           android:text="Ver lista"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/button2"
+          android:id="@+id/buttonListar"
           android:layout_weight="3" />
 
     </LinearLayout>

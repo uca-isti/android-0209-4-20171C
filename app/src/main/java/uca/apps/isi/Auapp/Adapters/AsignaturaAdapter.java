@@ -12,6 +12,7 @@ import android.widget.TextView;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import uca.apps.isi.Auapp.MainActivity;
+import uca.apps.isi.Auapp.MainActivity2;
 import uca.apps.isi.Auapp.R;
 import uca.apps.isi.Auapp.models.Asignatura;
 
@@ -22,7 +23,7 @@ import uca.apps.isi.Auapp.models.Asignatura;
 public class AsignaturaAdapter extends RecyclerView.Adapter<AsignaturaAdapter.ViewHolder> {
 
     private RealmResults<Asignatura> asignaturas;
-    private MainActivity mainActivity;
+    private MainActivity2 mainActivity;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -38,14 +39,14 @@ public class AsignaturaAdapter extends RecyclerView.Adapter<AsignaturaAdapter.Vi
             super(view);
             asignatura = (TextView) view.findViewById(R.id.asignatura);
 
-            item = (LinearLayout) view.findViewById(R.id.item);
-            img=(ImageView) view.findViewById(R.id.imagen);
-            card = (CardView) view.findViewById(R.id.card_view);
+            //item = (LinearLayout) view.findViewById(R.id.item);
+           // img=(ImageView) view.findViewById(R.id.imagen);
+           // card = (CardView) view.findViewById(R.id.card_view);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AsignaturaAdapter(RealmResults<Asignatura> asignaturaModels, MainActivity mainActivity) {
+    public AsignaturaAdapter(RealmResults<Asignatura> asignaturaModels, MainActivity2 mainActivity) {
         this.asignaturas = asignaturaModels;
         this.mainActivity = mainActivity;
     }

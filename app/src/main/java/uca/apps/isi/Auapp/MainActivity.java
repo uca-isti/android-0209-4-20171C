@@ -254,7 +254,7 @@ private void eliminarTodo(){
         toast1.show();
     }
 
-    public static void loadData() {
+   /* public static void loadData() {
         // Get a Realm instance for this thread
         Realm realm = Realm.getDefaultInstance();
         final RealmResults<Asignatura> asignaturasss = realm
@@ -267,4 +267,5 @@ private void eliminarTodo(){
         mAdapter = new AsignaturaAdapter(asignaturasss, mainActivity);
         mRecyclerView.setAdapter(mAdapter);
     }
+    */
 }
